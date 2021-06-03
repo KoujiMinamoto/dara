@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use app\Http\Controllers;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +22,7 @@ Route::get('/', function () {
 Route::get('/123', function () {
     return view('home');
 });
+
+Route::get('/dashboard/get-num-new-orders/', 'App\Http\Controllers\DatabaseController@getNumOfJobs');
+Route::get('/dashboard/getallJobs/', 'App\Http\Controllers\DatabaseController@getAllJobs');
+Route::get('/dashboard/getCostCentre/{job}', 'App\Http\Controllers\DatabaseController@getCostCentre');
