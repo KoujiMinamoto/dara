@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/123', function () {
-    return view('home');
+Route::get('/form', function () {
+    return view('form');
 });
 
 Route::get('/dashboard/get-num-new-orders/', 'App\Http\Controllers\DatabaseController@getNumOfJobs');

@@ -19,16 +19,16 @@
                 <button onclick="add_job()"></button>
                 <div class="Job" id="Job">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="form-control" id="Job" onChange="getcost()">  
+                    <select class="form_Job" id="Job" onChange="getcostBySimpro()">  
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
-                    <select class="form-control" id="costcentre">  
+                    <select class="form_Costcentre" id="costcentre">  
                     </select>
                 </div>
                 
                 
             </div>
-            <button onclick="">submit</button>
+            <button onclick="makeFrom()">submit</button>
         </div>
     </body>
     
