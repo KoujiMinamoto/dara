@@ -7,23 +7,105 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script type="text/javascript"  src="{{URL::asset('/js/home.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"> -->
     </head>
 
     <body>
         <div id="home">
             <div id="from">
+                
                 <p class="az-dashboard-text">Your Name</p>
-                <select class="form-control" id="Name">  
+                <select class="ui search selection dropdown" id="Name">  
                 </select>
-                <button onclick="add_job()"></button>
-                <div class="Job" id="Job">
+                <button onclick="add_job_new()"><i class="plus icon"></i></button>
+                <button onclick="delete_job()"><i class="minus icon"></i></button>
+
+                <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="form_Job" id="Job" onChange="getcostBySimpro()">  
+                    <select class="ui search selection dropdown" id="Joblist_1" onChange="getcostBySimproNew(1)">  
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
-                    <select class="form_Costcentre" id="costcentre">  
+                    <div class="ui celled relaxed list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox" name="fruits">
+                                <label>Select All</label>
+                            </div>
+                            <div class="list" id="costlist_1">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Job" id="Job_2" style="display:none">
+                    <p class="az-dashboard-text">Job Id</p>
+                    <select class="ui search selection dropdown" id="Joblist_2" onChange="getcostBySimproNew(2)">  
                     </select>
+                    <p class="az-dashboard-text">Costcentre</p>
+                    <div class="ui celled relaxed list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox" name="fruits">
+                                <label>Select All</label>
+                            </div>
+                            <div class="list" id="costlist_2">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Job" id="Job_3" style="display:none">
+                    <p class="az-dashboard-text">Job Id</p>
+                    <select class="ui search selection dropdown" id="Joblist_3" onChange="getcostBySimproNew(3)">  
+                    </select>
+                    <p class="az-dashboard-text">Costcentre</p>
+                    <div class="ui celled relaxed list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox" name="fruits">
+                                <label>Select All</label>
+                            </div>
+                            <div class="list" id="costlist_3">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Job" id="Job_4" style="display:none">
+                    <p class="az-dashboard-text">Job Id</p>
+                    <select class="ui search selection dropdown" id="Joblist_4" onChange="getcostBySimproNew(4)">  
+                    </select>
+                    <p class="az-dashboard-text">Costcentre</p>
+                    <div class="ui celled relaxed list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox" name="fruits">
+                                <label>Select All</label>
+                            </div>
+                            <div class="list" id="costlist_4">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Job" id="Job_5" style="display:none">
+                    <p class="az-dashboard-text">Job Id</p>
+                    <select class="ui search selection dropdown" id="Joblist_5" onChange="getcostBySimproNew(5)">  
+                    </select>
+                    <p class="az-dashboard-text">Costcentre</p>
+                    <div class="ui celled relaxed list">
+                        <div class="item">
+                            <div class="ui master checkbox">
+                                <input type="checkbox" name="fruits">
+                                <label>Select All</label>
+                            </div>
+                            <div class="list" id="costlist_5">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 
