@@ -71,7 +71,7 @@ function getEmployeebySimpro(){
     var job= document.getElementById('Job');
     for(i = 1; i < 4; i++){
         $.ajax({
-            url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/employees/?columns=Name&pageSize=250",
+            url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/employees/?columns=ID,Name&pageSize=250",
             type: "GET",
             dataType: "JSON",
             headers: {
@@ -86,7 +86,7 @@ function getEmployeebySimpro(){
                 //     $('#Job.form-control').append('<option value="' + item.index + '">' + item.key + '</option>');
                 //     });
                 for(i = 0; i < response.length; i++){
-                    $('#Name').append('<option value="' + response[i].Name+ '">' + response[i].Name + '</option>');
+                    $('#Name').append('<option value="' + response[i].ID+ '">' + response[i].Name + '</option>');
                 }
             
             },
@@ -271,6 +271,10 @@ function getcostBySimproNew(number){
 
 function makeFrom() {
     var num =  JSON.parse(window.localStorage.NumberOfJobs);
+    var datetime = new Date();
+    var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2);
+    var isostarttime  = datetime.toISOString();
+    var starttime = datetime.toTimeString();
     var jobslist = [];
     var costlist = [];
     try{
@@ -289,12 +293,18 @@ function makeFrom() {
             }        
         }
 
-        let Name = $("#Name option:selected").text()
+        let Name = $("#Name option:selected").text();
+        let NameID= document.getElementById('Name');
+        var ID = NameID.value;
 
         window.localStorage.jobs = JSON.stringify(jobslist);
         window.localStorage.costs = JSON.stringify(costlist);
         window.localStorage.name =  Name;
-        
+        window.localStorage.id =  ID;
+        window.localStorage.isostarttime =  isostarttime;
+        window.localStorage.starttime =  starttime;
+        window.localStorage.date =  today;
+        console.log(ID);
         window.open("form",target="_self");
     }catch(err) {
         alert("Costcenter can not be empty");

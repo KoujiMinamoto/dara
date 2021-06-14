@@ -1,5 +1,5 @@
 function submit(){
-    var storedName = window.localStorage.name;
+    var id = window.localStorage.id;
     var jobs = JSON.parse(window.localStorage.jobs);
     var costs = JSON.parse(window.localStorage.costs);
 }
