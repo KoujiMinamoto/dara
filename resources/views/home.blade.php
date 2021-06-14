@@ -9,19 +9,20 @@
         <script type="text/javascript"  src="{{URL::asset('/js/home.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <link rel="styleSheet" href="{{URL::asset('/css/home.css') }}" type="text/css">
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"> -->
     </head>
 
     <body>
-        <div id="home">
+        <div class = "home" id="home">
             <div id="from">
-                
-                <p class="az-dashboard-text">Your Name</p>
+                <div class="name">
+                <p class="az-dashboard-text left-text">Your Name</p>
                 <select class="ui search selection dropdown" id="Name">  
                 </select>
-                <button onclick="add_job_new()"><i class="plus icon"></i></button>
-                <button onclick="delete_job()"><i class="minus icon"></i></button>
-
+                <button class="ui button" onclick="add_job_new()"><i class="plus icon"></i></button>
+                <button class="ui button" onclick="delete_job()"><i class="minus icon"></i></button>
+                </div>
                 <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
                     <select class="ui search selection dropdown" id="Joblist_1" onChange="getcostBySimproNew(1)">  
@@ -110,7 +111,9 @@
                 
                 
             </div>
-            <button onclick="makeFrom()">submit</button>
+            <div class="submit">
+                <button class="ui button" onclick="makeFrom()">submit</button>
+            </div>
         </div>
     </body>
     

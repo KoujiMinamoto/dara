@@ -273,48 +273,35 @@ function makeFrom() {
     var num =  JSON.parse(window.localStorage.NumberOfJobs);
     var jobslist = [];
     var costlist = [];
-    for(i=1;i<=num;i++){
-        let job = document.getElementById('Joblist_'+i);
-        let checkboxes = document.getElementById('costlist_'+i);
-        var myElement = document.getElementById("costlist_1");
-        // var checkboxs = $('#costlist_'+i+'.ui child checkbox checked label');
-        var checkboxs = checkboxes.getElementsByClassName("ui child checkbox checked");
-        var check = checkboxs[0].getElementsByTagName("label");       
-        for (var a=0, n=checkboxs.length;a<n;a++) 
-        {
-            
-                jobslist.push(job.value);
-                var check = checkboxs[a].getElementsByTagName("label");
-                costlist.push(check[0].innerText);
-
-            
+    try{
+        for(i=1;i<=num;i++){
+            let job = document.getElementById('Joblist_'+i);
+            let checkboxes = document.getElementById('costlist_'+i);
+            var myElement = document.getElementById("costlist_1");
+            var checkboxs = checkboxes.getElementsByClassName("ui child checkbox checked");
+            var check = checkboxs[0].getElementsByTagName("label");       
+            for (var a=0, n=checkboxs.length;a<n;a++) 
+            {           
+                    jobslist.push(job.value);
+                    var check = checkboxs[a].getElementsByTagName("label");
+                    costlist.push(check[0].innerText);
+        
+            }        
         }
-        
-        
 
+        let Name = $("#Name option:selected").text()
+
+        window.localStorage.jobs = JSON.stringify(jobslist);
+        window.localStorage.costs = JSON.stringify(costlist);
+        window.localStorage.name =  Name;
+        
+        window.open("form",target="_self");
+    }catch(err) {
+        alert("Costcenter can not be empty");
     }
 
 
-
-
-
-
-
-    // let jobs = document.getElementsByClassName('form_Job');
-    // let costs = document.getElementsByClassName('form_Costcentre');
-    let Name = $("#Name option:selected").text()
-    // var jobslist = [];
-    // var costlist = [];
-    // for(i = 0; i < jobs.length; i++){
-    //     jobslist.push(jobs[i].value);
-    //     costlist.push(costs[i].value);
-
-    // }
-    window.localStorage.jobs = JSON.stringify(jobslist);
-    window.localStorage.costs = JSON.stringify(costlist);
-    window.localStorage.name =  Name;
     
-    window.open("form",target="_self");
 }
 
 function initPage() {
