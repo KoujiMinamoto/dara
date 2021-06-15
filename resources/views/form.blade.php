@@ -13,6 +13,7 @@
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+        <script type="text/javascript"  src="{{URL::asset('/js/form.js') }}"></script>
     </head>
 
     <body>
@@ -39,7 +40,7 @@
                 
             </div>
             <div class="submit">
-            <button class="ui button" onclick="">submit</button>
+            <button class="ui button" onclick="submit()">submit</button>
             </div>
         </div>
     </body>
