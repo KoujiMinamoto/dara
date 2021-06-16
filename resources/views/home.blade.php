@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -14,14 +14,19 @@
     </head>
 
     <body>
+        <div class="header" id="header_id">
+            <div class="companyLogo" id="companyLogo_id">
+                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 5px;">
+            </div>
+        </div>
         <div class = "home" id="home">
             <div id="from">
                 <div class="name">
                 <p class="az-dashboard-text left-text">Your Name</p>
                 <select class="ui search selection dropdown" id="Name">  
                 </select>
-                <button class="ui button" onclick="add_job_new()"><i class="plus icon"></i></button>
-                <button class="ui button" onclick="delete_job()"><i class="minus icon"></i></button>
+                <a class="btn plus" onclick="add_job_new()" >+</a>
+                <a class="btn minus" onclick="delete_job()">-</a>
                 </div>
                 <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
@@ -112,7 +117,7 @@
                 
             </div>
             <div class="submit">
-                <button class="ui button" onclick="makeFrom()">submit</button>
+                <button class="btn submitbtn" onclick="makeFrom()">submit</button>
             </div>
         </div>
     </body>

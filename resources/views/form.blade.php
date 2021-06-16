@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -17,6 +17,11 @@
     </head>
 
     <body>
+        <div class="header" id="header_id">
+            <div class="companyLogo" id="companyLogo_id">
+                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 5px;">
+            </div>
+        </div>
         <div class = "home" id="home">
             
             <div class = "from" id="from">
@@ -40,7 +45,7 @@
                 
             </div>
             <div class="submit">
-            <button class="ui button" onclick="submit()">submit</button>
+            <button class="btn submitbtn" onclick="submit()">submit</button>
             </div>
         </div>
     </body>
@@ -59,7 +64,7 @@
         var jobs = JSON.parse(window.localStorage.jobs);
         var costs = JSON.parse(window.localStorage.costs);
         document.getElementById('name').innerHTML = storedName;
-        document.getElementById('Starttime').innerHTML = "Start from : "+starttime;
+        document.getElementById('Starttime').innerHTML = "Start from : "+starttime.slice(0, 5);
         
         var bodyString = '';
         $.each(jobs, function(index, ctry) {
