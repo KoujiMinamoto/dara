@@ -170,8 +170,8 @@ body {
     text-decoration: none;
   }
   .btn:hover{
-  background: radial-gradient(circle,  #0ff 0%, #e0e5ec 60%);
-    color: rgba(102,102,102,.5); 
+  background: radial-gradient(circle,  #0ff 0%, #c7cfda 60%) !important;
+    color: rgba(102,102,102,.5) !important; 
     animation: colorchange 3s linear infinite;
   }
   .btn:active{

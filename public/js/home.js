@@ -22,7 +22,6 @@ function add_job_new() {
     }else{
         alert("You can just add 5 Jobs");
     }
-
       // getjobs();
 }
 function delete_job() {
@@ -227,6 +226,7 @@ function getcostBySimproNew(number){
                             $('#costlist_'+number).append('<div class="ui child checkbox"><input type="checkbox" name="' + sec+ '"><label>' + response1[a].ID + '</label></div></div>');
                             
                         }
+                        clickfresh(number);
                        
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -241,6 +241,8 @@ function getcostBySimproNew(number){
             alert('Error '+xhr.status+' | '+thrownError);
         },
     });
+    
+    
 }
 function isRepeat(arr) {
     var set= {};
@@ -253,7 +255,15 @@ function isRepeat(arr) {
     return false;
 }
 
+function clickfresh(number){
+    var btnn = document.getElementById("Job_"+number);
+    var btnnn  = btnn.getElementsByClassName("ui master checkbox");
+    btnnn[0].click();
+    
 
+
+
+}
 function makeFrom() {
     var num =  JSON.parse(window.localStorage.NumberOfJobs);
     var bol =[];
@@ -269,7 +279,7 @@ function makeFrom() {
         }
         flagArray[sourceArray[i]] = true;
     }
-    console.log(bol);
+    
 
     if (bolean==true){
     
@@ -288,7 +298,7 @@ function makeFrom() {
                 var myElement = document.getElementById("costlist_1");
                 var checkboxs = checkboxes.getElementsByClassName("ui child checkbox checked");
                 var check = checkboxs[0].getElementsByTagName("label");
-                    
+                console.log(checkboxs);
                 for (var a=0, n=checkboxs.length;a<n;a++) 
                 {           
                         jobslist.push(job.value);
@@ -316,7 +326,7 @@ function makeFrom() {
             console.log(section);
             window.open("form",target="_self");
         }catch(err) {
-            alert("Costcenter can not be empty");
+            alert(err);
         }
     }
     else{
