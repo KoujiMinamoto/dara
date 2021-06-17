@@ -19,16 +19,17 @@
     <body>
         <div class="header" id="header_id">
             <div class="companyLogo" id="companyLogo_id">
-                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 5px;">
+                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:15px;margin-top: 15px;">
             </div>
+            <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="float: right;position: relative;"seamless></iframe> </div>
+            
         </div>
         <div class = "home" id="home">
             
             <div class = "from" id="from">
-            <div class="cleanslate w24tz-current-time w24tz-small" style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;"><p><a href="//24timezones.com/Melbourne/time" style="text-decoration: none" class="clock24" id="tz24-1623714501-c1152-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjBjN2VhYzVmMGIzNCIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9" title="Time - Melbourne" target="_blank"></a></p><div id="clock_block_cb60c7eac5f0b34"></div></div>
-
-            <p class="az-dashboard-text" id= "name">e</p>
-            <p class="az-dashboard-text" id= "Starttime">e</p>
+            
+            <p class="az-dashboard-text" id= "name"></p>
+            <p class="az-dashboard-text" id= "Starttime"></p> <p class="az-dashboard-text" id= "Taketime"></p>
             <table class="table" id="table_orders">
                 <thead>
                     <tr>
@@ -58,6 +59,22 @@
     //     var options=$("#Job option:selected"); 
         
     // }
+        function timer(){
+            var starttime = window.localStorage.startStringtime;
+            var start = Date.parse(starttime);
+            var now = new  Date();
+            var diffMs = (now - start);
+            var diffDays = Math.floor(diffMs / 86400000); // days
+            var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+            var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+            var diffs = Math.round((((diffMs % 86400000) % 3600000) %60000)/1000); 
+            document.getElementById('Taketime').innerHTML="It takes you "+diffHrs+' hrs '+diffMins+" mins "+diffs+" s";
+        }
+    
+        function startTimer()//开始
+        {
+            clock=setInterval(timer,1000);
+        }
     window.onload=function(){
         var storedName = window.localStorage.name;
         var starttime = window.localStorage.starttime;
@@ -72,7 +89,7 @@
         });
         $('#table_orders tbody').html(bodyString);
         console.log(bodyString);
-        
+        startTimer();
 
     
     }

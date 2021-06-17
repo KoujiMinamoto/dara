@@ -5,8 +5,8 @@
 }
 
 body {
-	/* background-color: #f6f5f7; */
-    background-image: linear-gradient(90deg, #0f76ec, #09318f)  !important;
+	background-color: rgb(250 250 250);
+    /* background-image: linear-gradient(90deg, #0f76ec, #09318f)  !important; */
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 50px;
 }
@@ -40,8 +40,8 @@ body {
 	flex: 1;
 	padding: 0 10px 10px;
 	margin: 0 auto;
-	min-width: 300px;
-	max-width: 400px;
+	min-width: 340px;
+	max-width: 800px;
     margin-bottom: 10px;
 }
 
@@ -64,8 +64,8 @@ body {
 	flex: 1;
 	padding: 0 10px 10px;
 	margin: 0 auto;
-	min-width: 300px;
-	max-width: 400px;
+	min-width: 340px;
+	max-width: 800px;
     margin-bottom: 10px;
 }
 
@@ -86,15 +86,15 @@ body {
 	flex: 1;
 	padding: 0 10px 10px;
 	margin: 0 auto;
-	min-width: 300px;
-	max-width: 400px;
+	min-width: 340px;
+	max-width: 800px;
 }
 .submit {
 	flex: 1;
 	padding: 0 10px 10px;
 	margin: 0 auto;
-    min-width: 300px;
-	max-width: 400px;
+    min-width: 340px;
+	max-width: 800px;
 }
 
 .pricing-box h5 {
@@ -106,7 +106,7 @@ body {
 .home {
     /* width: 500px; */
     top: 100px;
-    padding: 40px;
+    padding: 4px;
     left: 1%;
     right: 1%;
     position: absolute;
@@ -145,7 +145,7 @@ body {
     height: 36px;}
 .submitbtn{
     position: relative;right: -10px;float: right;
-    background-image: linear-gradient(90deg, #ec0f0f, #8f4a09)  !important;
+    background-image: linear-gradient(90deg, #2a79fe, #2a79fd)  !important;
     color:white !important;
     text-align: center;
 }
@@ -181,15 +181,23 @@ body {
       inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
   }
   .header {
-    height: 5rem;
+    height: 95px;
     position: absolute;
     z-index:999;
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+
     top: 0;
-    background:rgb(13 113 228);
+    /* background:rgb(13 113 228); */
+    background-image: linear-gradient(to right,#2a79fe, #fff);
     
     margin: 0 auto;
     left:0;
     right:0;    
+}
+.companyLogo{
+    position: relative;
+    float: left;
+    width: 160px;
 }
 
   @keyframes colorchange {

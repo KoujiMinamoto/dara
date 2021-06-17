@@ -16,17 +16,19 @@
     <body>
         <div class="header" id="header_id">
             <div class="companyLogo" id="companyLogo_id">
-                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 5px;">
+                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 10px;">
             </div>
         </div>
         <div class = "home" id="home">
             <div id="from">
                 <div class="name">
-                <p class="az-dashboard-text left-text">Your Name</p>
-                <select class="ui search selection dropdown" id="Name">  
-                </select>
-                <a class="btn plus" onclick="add_job_new()" >+</a>
-                <a class="btn minus" onclick="delete_job()">-</a>
+                    <p class="az-dashboard-text left-text">Your Name</p>
+                    <select class="ui search selection dropdown" id="Name">  
+                    </select>
+                    
+                        <a class="btn plus" onclick="add_job_new()" >+</a>
+                        <a class="btn minus" onclick="delete_job()">-</a>
+                                   
                 </div>
                 <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
