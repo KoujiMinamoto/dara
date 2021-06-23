@@ -136,7 +136,6 @@ function getjobsbySimpro(){
 function getcostBySimpro(){
     // $(this).parentNode.costcentre.append('<option value="' + response[i].CostCenterID+ '">' + response[i].CostCenterID + '</option>');
     var options=$("#Job option:selected"); 
-    var obj = Element;
     var abc = document.getElementById("Job");
     var index = abc.selectedIndex; // 选中索引
     $('#costlist_2').empty();// clear  all
@@ -191,7 +190,7 @@ function getcostBySimproNew(number){
     var options=$("#Joblist_"+number+" option:selected"); 
     $('#costlist_'+number).empty();// clear  all
     
-
+    document.getElementById("bg").style.display = "block";
     // var text = abc.options[index].text; // 选中文本
     var job = options.val();
 
@@ -218,6 +217,13 @@ function getcostBySimproNew(number){
                     headers: {
                         "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"
                     },
+                    beforeSend : function(){
+                        //  设置 进度条到20%慢慢变到50%
+                        document.getElementById("bg").style.display = "block";
+                     },
+                     complete: function(){
+                        //  设置 进度条到80%
+                     },
                     success: function (response1) {
                         
                         var info = JSON.stringify(response1);
@@ -227,9 +233,11 @@ function getcostBySimproNew(number){
                             
                         }
                         clickfresh(number);
+                        document.getElementById("bg").style.display = "none";
                        
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
+                        document.getElementById("bg").style.display = "none";
                         alert('Error '+xhr.status+' | '+thrownError);
                     },
                 });

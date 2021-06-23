@@ -19,6 +19,29 @@
                 <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:25px;margin-top: 10px;">
             </div>
         </div>
+        <div class="shadow" id="bg">
+            <!-- about -->
+            <div class="about">
+            <a class="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank">
+                <span class="icon"></span>
+            </a>
+            <a class="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank">
+                <span class="icon"></span>
+            </a>
+            <a class="bg_links social linkedin" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank">
+                <span class="icon"></span>
+            </a>
+            <a class="bg_links logo"></a>
+            </div>
+            <!-- end about -->
+
+            <div class="content">
+            <div class="loading">
+            <p>loading</p>
+                <span></span>
+            </div>
+            </div>
+        </div>
         <div class = "home" id="home">
             <div id="from">
                 <div class="name">
