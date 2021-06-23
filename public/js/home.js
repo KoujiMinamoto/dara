@@ -70,7 +70,7 @@ function getEmployeebySimpro(){
     var job= document.getElementById('Job');
     for(i = 1; i < 4; i++){
         $.ajax({
-            url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/employees/?columns=ID,Name&pageSize=250",
+            url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/employees/?columns=ID,Name&pageSize=250",
             type: "GET",
             dataType: "JSON",
             headers: {
@@ -100,7 +100,7 @@ function getjobsbySimpro(){
     var job= document.getElementById('Job');
     for(i = 1; i < 4; i++){
         $.ajax({
-            url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/?columns=ID&pageSize=250&page="+i,
+            url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/?columns=ID&pageSize=250&page="+i,
             type: "GET",
             dataType: "JSON",
             headers: {
@@ -147,7 +147,7 @@ function getcostBySimpro(){
     // console.log(options.val());
     // $('#costcentre.form-control').append('<option value="' + 0 + '">' + "response[i].CostCenterID" + '</option>');
     $.ajax({
-        url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/?columns=ID",
+        url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/?columns=ID",
         type: "GET",
         dataType: "JSON",
         headers: {
@@ -158,7 +158,7 @@ function getcostBySimpro(){
             var data = eval('(' + info + ')');
             for(i = 0; i < response.length; i++){
                 $.ajax({
-                    url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/"+response[i].ID+"/costCenters/?columns=ID",
+                    url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/"+response[i].ID+"/costCenters/?columns=ID",
                     type: "GET",
                     dataType: "JSON",
                     headers: {
@@ -200,7 +200,7 @@ function getcostBySimproNew(number){
     // console.log(options.val());
     // $('#costcentre.form-control').append('<option value="' + 0 + '">' + "response[i].CostCenterID" + '</option>');
     $.ajax({
-        url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/?columns=ID",
+        url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/?columns=ID",
         type: "GET",
         dataType: "JSON",
         headers: {
@@ -212,7 +212,7 @@ function getcostBySimproNew(number){
             for(i = 0; i < response.length; i++){
                 var sec =  response[i].ID;
                 $.ajax({
-                    url: "https://daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/"+response[i].ID+"/costCenters/?columns=ID",
+                    url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job+"/sections/"+response[i].ID+"/costCenters/?columns=ID",
                     type: "GET",
                     dataType: "JSON",
                     headers: {
