@@ -18,6 +18,9 @@ use app\Http\Controllers;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::get('/form', function () {
     return view('form');
@@ -26,3 +29,4 @@ Route::get('/form', function () {
 Route::get('/dashboard/get-num-new-orders/', 'App\Http\Controllers\DatabaseController@getNumOfJobs');
 Route::get('/dashboard/getallJobs/', 'App\Http\Controllers\DatabaseController@getAllJobs');
 Route::get('/dashboard/getCostCentre/{job}', 'App\Http\Controllers\DatabaseController@getCostCentre');
+Route::post('createNew', 'App\Http\Controllers\DatabaseController@createNew');

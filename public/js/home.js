@@ -229,7 +229,7 @@ function getcostBySimproNew(number){
                         var info = JSON.stringify(response1);
                         var data = eval('(' + info + ')');
                         for(a = 0; a < response1.length; a++){
-                            $('#costlist_'+number).append('<div class="ui child checkbox"><input type="checkbox" name="' + sec+ '"><label>' + response1[a].ID + '</label></div></div>');
+                            $('#costlist_'+number).append('<div class="ui child checkbox left-text"><input type="checkbox" name="' + sec+ '"><label>' + response1[a].ID + '</label></div></div>');
                             
                         }
                         clickfresh(number);
@@ -299,14 +299,18 @@ function makeFrom() {
         var jobslist = [];
         var costlist = [];
         var section = [];
+        let Name = $("#Name option:selected").text();
+        let NameID= document.getElementById('Name');
+        var ID = NameID.value;
         try{
             for(i=1;i<=num;i++){
                 let job = document.getElementById('Joblist_'+i);
                 let checkboxes = document.getElementById('costlist_'+i);
                 var myElement = document.getElementById("costlist_1");
-                var checkboxs = checkboxes.getElementsByClassName("ui child checkbox checked");
+                var checkboxs = checkboxes.getElementsByClassName("ui child checkbox left-text checked");
                 var check = checkboxs[0].getElementsByTagName("label");
                 console.log(checkboxs);
+                //version 2
                 for (var a=0, n=checkboxs.length;a<n;a++) 
                 {           
                         jobslist.push(job.value);
@@ -314,13 +318,38 @@ function makeFrom() {
                         var seccheck  =  checkboxs[a].getElementsByTagName("input");  
                         costlist.push(check[0].innerText);
                         section.push(seccheck[0].name);
+                        //version 2
+                        let request = {
+                            "name":Name,
+                            "nameid":ID,
+                            "starttime":Stringtime,
+                            "jobid":job.value,
+                            "sectionid":check[0].innerText,
+                            "costcenterid":seccheck[0].name,
+                            'date':today,
+                        };
+                        $.ajax({
+                            url: 'createNew',
+                            type: "POST",
+                            dataType: "json",
+                            data: request,
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                              },
+                            success: function (response) {
+                                
+                               console.log(response);
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert('Error '+xhr.status+' | '+thrownError);
+                            },
+                        });
+                        
             
                 }        
             }
 
-            let Name = $("#Name option:selected").text();
-            let NameID= document.getElementById('Name');
-            var ID = NameID.value;
+            
 
             window.localStorage.jobs = JSON.stringify(jobslist);
             window.localStorage.costs = JSON.stringify(costlist);
@@ -332,7 +361,7 @@ function makeFrom() {
             window.localStorage.startStringtime =  Stringtime;
             window.localStorage.date =  today;
             console.log(section);
-            window.open("form",target="_self");
+            // window.open("form",target="_self");
         }catch(err) {
             alert(err);
         }
