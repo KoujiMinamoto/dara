@@ -88,6 +88,7 @@ body {
 	margin: 0 auto;
 	min-width: 340px;
 	max-width: 800px;
+    height: 100px;
 }
 .submit {
 	flex: 1;
@@ -451,3 +452,9 @@ body {
       width: 16px;
     }
   }
+
+.a .left-text{
+    position: relative;
+    float: left;
+    padding-top: 10px;
+}

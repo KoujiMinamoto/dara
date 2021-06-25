@@ -15,7 +15,7 @@ use app\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 });
 Route::get('/login', function () {
@@ -30,3 +30,6 @@ Route::get('/dashboard/get-num-new-orders/', 'App\Http\Controllers\DatabaseContr
 Route::get('/dashboard/getallJobs/', 'App\Http\Controllers\DatabaseController@getAllJobs');
 Route::get('/dashboard/getCostCentre/{job}', 'App\Http\Controllers\DatabaseController@getCostCentre');
 Route::post('createNew', 'App\Http\Controllers\DatabaseController@createNew');
+Route::get('/api/checkif/{nameid}', 'App\Http\Controllers\DatabaseController@checkif');
+Route::get('/api/deleteAll/{nameid}', 'App\Http\Controllers\DatabaseController@deleteAll');
+Route::get('/api/getAll/{nameid}', 'App\Http\Controllers\DatabaseController@getAll');

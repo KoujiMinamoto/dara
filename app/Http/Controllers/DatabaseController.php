@@ -47,4 +47,18 @@ class DatabaseController extends Controller
         return response()->json($request);
         
     }
+    public function getAll($nameid){
+        return DB::table('RECORD')->where('nameid', $nameid)->get();
+    }
+
+    public function checkif($nameid){
+        return DB::table('RECORD')->where('nameid', $nameid)->get();
+
+    }
+
+    public function deleteAll($nameid){
+        DB::table('RECORD')->where('nameid', $nameid)->delete();
+        return response(['Message' => 'This request has been deleted'], 200);
+
+    }
 }

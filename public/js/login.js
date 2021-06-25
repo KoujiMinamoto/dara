@@ -29,6 +29,91 @@ function getEmployeebySimpro(){
     }
 }
 
+function Gonext(){
+    document.getElementById("bg").style.display = "block";
+    let NameID= document.getElementById('Name');
+    var ID = NameID.value;
+    let Name = $("#Name option:selected").text();
+    window.localStorage.name =  Name;
+    window.localStorage.id =  ID;
+    $.ajax({
+        url: './api/checkif/'+ID,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            var info = JSON.stringify(response);
+            if(info.length>3){
+                //set the user
+                $.ajax({
+                    url: './api/getAll/'+ID,
+                    type: "get",
+                    dataType: "json",
+                    success: function (response1) {
+                        var jobslist = [];
+                        var costlist = [];
+                        var section = [];
+                        
+                        console.log(response1.length);
+                        for(i=0;i<response1.length;i++){
+                            jobslist.push(response1[i].jobid);
+                            costlist.push(response1[i].costcenterid);
+                            section.push(response1[i].sectionid);
+
+                        }
+
+
+
+
+
+
+
+                        //store the data
+                        window.localStorage.startStringtime =  response1[0].starttime;
+                        window.localStorage.date = response1[0].date;
+                        window.localStorage.jobs = JSON.stringify(jobslist);
+                        window.localStorage.costs = JSON.stringify(costlist);
+                        window.localStorage.section = JSON.stringify(section);
+                        
+
+
+
+
+
+
+
+
+
+
+                        document.getElementById("bg").style.display = "none";
+                        window.open("form",target="_self");
+           
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Error '+xhr.status+' | '+thrownError);
+                        document.getElementById("bg").style.display = "none";
+                    },
+                });
+
+
+
+
+
+            }
+            else{
+                console.log(info);
+                window.open("home",target="_self");
+                document.getElementById("bg").style.display = "none";
+           
+            }
+            
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            document.getElementById("bg").style.display = "none";
+        },
+    });
+}
+
 window.onload=function(){
     //getjobs();
     

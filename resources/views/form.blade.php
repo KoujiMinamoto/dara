@@ -24,6 +24,20 @@
             <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="float: right;position: relative;"seamless></iframe> </div>
             
         </div>
+        <div class="shadow" id="bg">
+            <!-- about -->
+            <div class="about">
+            
+            </div>
+            <!-- end about -->
+
+            <div class="content">
+            <div class="loading">
+            <p>loading</p>
+                <span></span>
+            </div>
+            </div>
+        </div>
         <div class = "home" id="home">
             
             <div class = "from" id="from">

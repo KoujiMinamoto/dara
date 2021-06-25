@@ -37,9 +37,10 @@
         <div class = "home" id="home">
             <div id="from">
                 <div class="name">
-                    <p class="az-dashboard-text left-text">Your Name</p>
-                    <select class="ui search selection dropdown" id="Name">  
-                    </select>
+                    <p class="az-dashboard-text left-text">Welcome Back</p>
+                    <a class="left-text" id="Username"></a>
+                    <!-- <select class="ui search selection dropdown" id="Name" style="display:none">  
+                    </select> -->
                     
                         <a class="btn plus" onclick="add_job_new()" >+</a>
                         <a class="btn minus" onclick="delete_job()">-</a>

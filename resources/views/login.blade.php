@@ -25,15 +25,29 @@
             
             
         </div>
+        <div class="shadow" id="bg">
+            <!-- about -->
+            <div class="about">
+            
+            </div>
+            <!-- end about -->
+
+            <div class="content">
+            <div class="loading">
+            <p>loading</p>
+                <span></span>
+            </div>
+            </div>
+        </div>
         <div class = "home" id="home">
-            <form class="login">
+            <div class="login">
             <div class="name">
                     <p class="az-dashboard-text left-text">Your Name</p>
                     <select class="ui search selection dropdown" id="Name">  
                     </select>                                  
             </div>
-            <button>Login</button>
-            </form>
+            <button onclick="Gonext()">Login</button>
+            </div>
             
         </div>
     </body>
