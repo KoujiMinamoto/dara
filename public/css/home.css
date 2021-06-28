@@ -458,3 +458,25 @@ body {
     float: left;
     padding-top: 10px;
 }
+
+.left-btn{
+    margin-left: 20px;
+}
+
+.bd-btn{
+    position: absolute;
+    margin: 0;
+    top: 70vh;
+    left: 45vw;
+}
+
+.bd-text{
+    position: absolute;
+    font-size: 20px !important;
+    width: 300px;
+    top: -10vh !important;
+    left: -10vw;
+}
+
+
+

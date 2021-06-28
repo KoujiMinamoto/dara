@@ -33,3 +33,5 @@ Route::post('createNew', 'App\Http\Controllers\DatabaseController@createNew');
 Route::get('/api/checkif/{nameid}', 'App\Http\Controllers\DatabaseController@checkif');
 Route::get('/api/deleteAll/{nameid}', 'App\Http\Controllers\DatabaseController@deleteAll');
 Route::get('/api/getAll/{nameid}', 'App\Http\Controllers\DatabaseController@getAll');
+Route::get('/api/updateMin/{nameid}/{time}', 'App\Http\Controllers\DatabaseController@updateMin');
+Route::get('/api/getMin/{nameid}', 'App\Http\Controllers\DatabaseController@getMin');

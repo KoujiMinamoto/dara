@@ -30,10 +30,25 @@
             
             </div>
             <!-- end about -->
-
+            
             <div class="content">
             <div class="loading">
             <p>loading</p>
+                <span></span>
+            </div>
+            </div>
+        </div>
+        <div class="shadow" id="hd">
+            <!-- about -->
+            <div class="about">
+            
+            </div>
+            <!-- end about -->
+            <button class="btn submitbtn bd-btn" onclick="stop()">Stop</button>
+
+            <div class="content">
+            <div class="loading">
+            <p>Resting</p>  <p class="bd-text" id= "Resttime"></p>
                 <span></span>
             </div>
             </div>
@@ -44,6 +59,7 @@
             
             <p class="az-dashboard-text" id= "name"></p>
             <p class="az-dashboard-text" id= "Starttime"></p> <p class="az-dashboard-text" id= "Taketime"></p>
+            <p class="az-dashboard-text" id= "Starttime"></p> <p class="az-dashboard-text" id= "totalrest">You have rest 0 mins </p>
             <table class="table" id="table_orders">
                 <thead>
                     <tr>
@@ -60,7 +76,10 @@
                 
             </div>
             <div class="submit">
-            <button class="btn submitbtn" onclick="submit()">submit</button>
+            <button class="btn submitbtn left-btn" onclick="submit()">submit</button>
+            <button class="btn submitbtn left-btn" onclick="cancel()">Cancel</button>
+            <button class="btn submitbtn left-btn" onclick="hold()">hold</button>
+            
             </div>
         </div>
     </body>
@@ -74,6 +93,7 @@
         
     // }
         function timer(){
+            
             var starttime = window.localStorage.startStringtime;
             var start = Date.parse(starttime);
             var now = new  Date();
@@ -90,12 +110,13 @@
             clock=setInterval(timer,1000);
         }
     window.onload=function(){
+        getHoldingTime();
         var storedName = window.localStorage.name;
-        var starttime = window.localStorage.starttime;
+        var starttime = window.localStorage.startStringtime;
         var jobs = JSON.parse(window.localStorage.jobs);
         var costs = JSON.parse(window.localStorage.costs);
         document.getElementById('name').innerHTML = storedName;
-        document.getElementById('Starttime').innerHTML = "Start from : "+starttime.slice(0, 5);
+        document.getElementById('Starttime').innerHTML = "Start from : "+starttime.slice(16, 24);
         
         var bodyString = '';
         $.each(jobs, function(index, ctry) {

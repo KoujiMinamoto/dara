@@ -44,6 +44,7 @@ class DatabaseController extends Controller
             'costcenterid' => $costcenterid,
             'date' => $date
          ]);
+         
         return response()->json($request);
         
     }
@@ -58,7 +59,20 @@ class DatabaseController extends Controller
 
     public function deleteAll($nameid){
         DB::table('RECORD')->where('nameid', $nameid)->delete();
+        DB::table('HOLDTIME')->where('nameid', $nameid)->delete();
         return response(['Message' => 'This request has been deleted'], 200);
 
+    }
+    public function updateMin($nameid,$time){
+        DB::table('HOLDTIME')->where('nameid', $nameid)->delete();
+        DB::table('HOLDTIME')->insert([
+            'mins' => $time,
+            'nameid' => $nameid,
+         ]);
+        return response(['Message' => 'This request has been updated'], 200);
+
+    }
+    public function getMin($nameid){
+        return DB::table('HOLDTIME')->selectRaw('mins')->where('nameid', $nameid)->get();
     }
 }

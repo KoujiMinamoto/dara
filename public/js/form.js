@@ -1,5 +1,120 @@
+function timer1(){
+    
+    var starttime = window.localStorage.reststart;
+    var start = Date.parse(starttime);
+    var now = new  Date();
+    var diffMs = (now - start);
+    var diffDays = Math.floor(diffMs / 86400000); // days
+    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+    var diffs = Math.round((((diffMs % 86400000) % 3600000) %60000)/1000); 
+    document.getElementById('Resttime').innerHTML=diffHrs+' hrs '+diffMins+" mins "+diffs+" s";
+}
+
+function startTimer()//开始
+{
+    clock=setInterval(timer,1000);
+}
+function hold(){
+    getHoldingTime();
+    document.getElementById("hd").style.display = "block";
+    var datetime = new Date();
+    var Stringtime  = datetime.toString();
+    window.localStorage.reststart = Stringtime;
+    clock=setInterval(timer1,1000);
+}
+
+function stop(){
+    
+    var holdingtimebefore = window.localStorage.holdingtime;
+    var inhdtimebefore = parseInt(holdingtimebefore);
+    var starttime = window.localStorage.reststart;
+    var id = window.localStorage.id;
+    var start = Date.parse(starttime);
+    var now = new  Date();
+    var diffMs = (now - start);
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); 
+    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); 
+    var totalrest = diffHrs*60+diffMins;
+    var holdingtime = totalrest+inhdtimebefore;
+    window.localStorage.totalrest= holdingtime;
+    //update to database
+    $.ajax({
+        url: './api/updateMin/'+id+'/'+holdingtime,
+        type: "get",
+        dataType: "json",
+        success: function (response1) {
+            
+            console.log(holdingtime);
+
+            document.getElementById("hd").style.display = "none";
+            document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
+            
+            
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            document.getElementById("hd").style.display = "none";
+            document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
+        },
+    });
+
+    
+
+}
+
+function getHoldingTime(){
+    var id = window.localStorage.id;
+    $.ajax({
+        url: './api/getMin/'+id,
+        type: "get",
+        dataType: "json",
+        success: function (response1) {
+            
+            console.log(response1[0]);
+            var time = response1[0].mins
+            console.log(time);
+            window.localStorage.holdingtime = time;
+            
+            
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            window.localStorage.holdingtime = 0;
+            
+        },
+    });
+
+}
+function cancel(){
+    var id = window.localStorage.id;
+    $.ajax({
+        url: './api/deleteAll/'+id,
+        type: "get",
+        dataType: "json",
+        success: function (response1) {
+            
+
+            document.getElementById("bg").style.display = "none";
+            
+            localStorage.clear();
+            window.open("login",target="_self");
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            document.getElementById("bg").style.display = "none";
+        },
+    });
+
+
+}
 function submit(){
     document.getElementById("bg").style.display = "block";
+    var totalrest = window.localStorage.totalrest;
+    var totalholdingtime = parseInt(totalrest);
     var datetime = new Date();
     var id = window.localStorage.id;
     var jobs = JSON.parse(window.localStorage.jobs);
@@ -13,9 +128,9 @@ function submit(){
     var Stringtime =window.localStorage.startStringtime ;
 
     
-    TimeStart = starttime.slice(0, 5);
+    
     start = new Date(Stringtime);
-    var diffmins = datetime.getMinutes() - start.getMinutes();
+    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime;
     var diffhours = datetime.getHours() - start.getHours();
     var totalmins = diffhours*60 + diffmins;
     var sspiltmins = diffmins/costs.length;
@@ -83,7 +198,7 @@ function submit(){
                 "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"
             },
             data: JSON.stringify({
-                "Notes": "Realstart"+realfinalstart+"    Realend"+realfinalend+"total mins:  "+sspiltmins,
+                "Notes": "The process start at: "+realfinalstart+"    The process end at:"+realfinalend+"  IT took total mins:  "+sspiltmins,
                 "IsLocked": true,
                 "Staff": StaffID,
                 "Date": today,

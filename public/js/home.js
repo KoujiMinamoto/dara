@@ -301,7 +301,21 @@ function makeFrom() {
         var section = [];
         let Name =window.localStorage.name;
         var ID = window.localStorage.id;
+        
         try{
+            $.ajax({
+                url: './api/updateMin/'+ID+'/'+"1",
+                type: "get",
+                dataType: "json",
+                success: function (response1) {
+                    
+                    console.log(ID+"set");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error '+xhr.status+' | '+thrownError);
+                    
+                },
+            });
             for(i=1;i<=num;i++){
                 let job = document.getElementById('Joblist_'+i);
                 let checkboxes = document.getElementById('costlist_'+i);
@@ -347,6 +361,8 @@ function makeFrom() {
             
                 }        
             }
+
+            
 
             
 
