@@ -178,6 +178,48 @@ function cancel(){
 function logout(){
     window.open("login",target="_self");
 }
+
+function confirmText1(){
+    var totalrest = window.localStorage.totalrest;
+    var totalholdingtime = parseInt(totalrest);
+    var datetime = new Date();
+    var id = window.localStorage.id;
+    var jobs = JSON.parse(window.localStorage.jobs);
+    var costs = JSON.parse(window.localStorage.costs);
+    var section = JSON.parse(window.localStorage.section);
+    var isostarttime = window.localStorage.isostarttime;
+    var starttime = window.localStorage.starttime;
+    var today = window.localStorage.date;
+    var isoendtime = datetime.toISOString();
+    var endtime = datetime.toISOString();
+    var Stringtime =window.localStorage.startStringtime ;
+
+    
+    
+    start = new Date(Stringtime);
+    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime;
+    var diffhours = datetime.getHours() - start.getHours();
+    var totalmins = diffhours*60 + diffmins;
+    var sspiltmins = diffmins/costs.length;
+    if(sspiltmins<=15){
+        spiltmins = 15;
+    }else {
+        var ss = sspiltmins%15;
+        if(ss>10){
+            spiltmins = parseInt(sspiltmins/15)*15+15;
+        }else{
+            spiltmins = parseInt(sspiltmins/15)*15;
+        }
+    }
+    var confirmText = "Are you sure you want to Submit? \n ";
+    for(i = 0; i < costs.length; i++){
+        
+        confirmText = confirmText+"JobID is "+jobs[i]+" and Cost center is "+costs[i]+" Take "+sspiltmins+" mins "+"\n";
+    }
+    window.localStorage.confirmText = confirmText;
+}
+
+
 function submit(){
     document.getElementById("bg").style.display = "block";
     var totalrest = window.localStorage.totalrest;
@@ -211,7 +253,9 @@ function submit(){
             spiltmins = parseInt(sspiltmins/15)*15;
         }
     }
-    var confirmText = "Are you sure you want to Submit?";
+    confirmText1();
+    var confirmText = window.localStorage.confirmText;
+    
     if(confirm(confirmText)) {
     for(i = 0; i < costs.length; i++){
         JobID= jobs[i];
@@ -312,5 +356,7 @@ function submit(){
         
 
     }
-}
+    }else{
+        document.getElementById("bg").style.display = "none";
+    }
 }
