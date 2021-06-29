@@ -211,8 +211,8 @@ function submit(){
             spiltmins = parseInt(sspiltmins/15)*15;
         }
     }
-    
-    
+    var confirmText = "Are you sure you want to Submit?";
+    if(confirm(confirmText)) {
     for(i = 0; i < costs.length; i++){
         JobID= jobs[i];
         StaffID = parseInt(id);
@@ -312,4 +312,5 @@ function submit(){
         
 
     }
+}
 }
