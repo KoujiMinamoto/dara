@@ -35,3 +35,5 @@ Route::get('/api/deleteAll/{nameid}', 'App\Http\Controllers\DatabaseController@d
 Route::get('/api/getAll/{nameid}', 'App\Http\Controllers\DatabaseController@getAll');
 Route::get('/api/updateMin/{nameid}/{time}', 'App\Http\Controllers\DatabaseController@updateMin');
 Route::get('/api/getMin/{nameid}', 'App\Http\Controllers\DatabaseController@getMin');
+Route::get('/api/setHoldingTime/{nameid}/{starttime}', 'App\Http\Controllers\DatabaseController@setHoldingTime');
+Route::get('/api/getHoldingTime/{nameid}', 'App\Http\Controllers\DatabaseController@getHoldingTime');

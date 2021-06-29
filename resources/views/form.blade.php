@@ -22,7 +22,7 @@
                 <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:15px;margin-top: 15px;">
             </div>
             <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="float: right;position: relative;"seamless></iframe> </div>
-            
+            <button class="btn submitbtn left-btn" onclick="logout()" style="margin-top: 25px;">Log out</button>
         </div>
         <div class="shadow" id="bg">
             <!-- about -->
@@ -125,6 +125,10 @@
         $('#table_orders tbody').html(bodyString);
         console.log(bodyString);
         startTimer();
+        var holdingtime = window.localStorage.holdingtime;
+        document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
+        holdingstatus();
+        
 
     
     }

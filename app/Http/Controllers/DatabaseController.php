@@ -18,6 +18,19 @@ class DatabaseController extends Controller
         return DB::table('COSTCENTRE')->count();
     }
 
+
+    public function setHoldingTime($nameid,$starttime){
+        DB::table('HOLDING')->where('nameid', $nameid)->delete();
+        DB::table('HOLDING')->insert([
+            'time' => $starttime,
+            'nameid' => $nameid,
+         ]);
+    }
+
+    public function getHoldingTime($nameid){
+        return DB::table('HOLDING')->where('nameid', $nameid)->get();
+    }
+
     public function getAllJobs(){
         return DB::table('COSTCENTRE')->selectRaw('JOBID')->orderBy('JOBID', 'ASC')->get();
     }
@@ -34,7 +47,7 @@ class DatabaseController extends Controller
         $sectionid=$request->input('sectionid');
         $costcenterid=$request->input('costcenterid');
         $date=$request->input('date');
-        // DB::insert('insert into record (name,nameid,starttime,jobid,sectionid,costcenterid,date) values (?, ? ,? , ?,  ?, ?, ?)', [$name,$nameid,$starttime,$jobid,$sectionid,$costcenterid,$date]);
+        
         DB::table('RECORD')->insert([
             'name' => $name,
             'nameid' => $nameid,
@@ -58,6 +71,7 @@ class DatabaseController extends Controller
     }
 
     public function deleteAll($nameid){
+        DB::table('HOLDING')->where('nameid', $nameid)->delete();
         DB::table('RECORD')->where('nameid', $nameid)->delete();
         DB::table('HOLDTIME')->where('nameid', $nameid)->delete();
         return response(['Message' => 'This request has been deleted'], 200);

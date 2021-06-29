@@ -17,11 +17,73 @@ function startTimer()//开始
 }
 function hold(){
     getHoldingTime();
+    setholdingstatus();
     document.getElementById("hd").style.display = "block";
     var datetime = new Date();
     var Stringtime  = datetime.toString();
     window.localStorage.reststart = Stringtime;
     clock=setInterval(timer1,1000);
+}
+//when onload to check if in holdingstatus
+function holdingstatus(){
+    var id = window.localStorage.id;
+    $.ajax({
+        url: './api/getHoldingTime/'+id,
+        type: "get",
+        dataType: "json",
+        success: function (response) { 
+            var status = response[0].time;
+            if(status.length<10){
+
+            }else{
+                getHoldingTime();
+                document.getElementById("hd").style.display = "block";
+                window.localStorage.reststart = status;
+                clock=setInterval(timer1,1000);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            
+        },
+    });
+}
+//when press holding button and set to holding status
+function setholdingstatus(){
+    var id = window.localStorage.id;
+    var  now = new Date();
+    var time  = now.toString();
+    $.ajax({
+        url: './api/setHoldingTime/'+id+'/'+time,
+        type: "get",
+        dataType: "json",
+        success: function (response) { 
+            console.log("setholding succeess");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            
+            
+        },
+    });
+
+}
+//when press stop button and set to holding status
+function cancelholdingstatus(){
+    var id = window.localStorage.id;
+    var time  = "noholding";
+    $.ajax({
+        url: './api/setHoldingTime/'+id+'/'+time,
+        type: "get",
+        dataType: "json",
+        success: function (response) { 
+            console.log("cancelholding succeess");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            
+            
+        },
+    });
+
 }
 
 function stop(){
@@ -38,15 +100,14 @@ function stop(){
     var totalrest = diffHrs*60+diffMins;
     var holdingtime = totalrest+inhdtimebefore;
     window.localStorage.totalrest= holdingtime;
+    cancelholdingstatus();
     //update to database
     $.ajax({
         url: './api/updateMin/'+id+'/'+holdingtime,
         type: "get",
         dataType: "json",
-        success: function (response1) {
-            
+        success: function (response1) { 
             console.log(holdingtime);
-
             document.getElementById("hd").style.display = "none";
             document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
             
@@ -89,27 +150,33 @@ function getHoldingTime(){
 
 }
 function cancel(){
+    
     var id = window.localStorage.id;
-    $.ajax({
-        url: './api/deleteAll/'+id,
-        type: "get",
-        dataType: "json",
-        success: function (response1) {
-            
+    var confirmText = "Are you sure you want to delete this object?";
+    if(confirm(confirmText)) {
+        $.ajax({
+            url: './api/deleteAll/'+id,
+            type: "get",
+            dataType: "json",
+            success: function (response1) {
+                
 
-            document.getElementById("bg").style.display = "none";
-            
-            localStorage.clear();
-            window.open("login",target="_self");
+                document.getElementById("bg").style.display = "none";
+                
+                localStorage.clear();
+                window.open("login",target="_self");
 
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert('Error '+xhr.status+' | '+thrownError);
-            document.getElementById("bg").style.display = "none";
-        },
-    });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error '+xhr.status+' | '+thrownError);
+                document.getElementById("bg").style.display = "none";
+            },
+        });
 
-
+    }
+}
+function logout(){
+    window.open("login",target="_self");
 }
 function submit(){
     document.getElementById("bg").style.display = "block";

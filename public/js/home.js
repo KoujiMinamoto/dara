@@ -110,6 +110,7 @@ function getjobsbySimpro(){
                 var info = JSON.stringify(response);
                 var data = eval('(' + info + ')');
                 console.log(response.length);
+                
                 // $.each(data, function(index, item) {
                 //     // console.log(item.index);
                 //     $('#Job.form-control').append('<option value="' + item.index + '">' + item.key + '</option>');
@@ -194,7 +195,9 @@ function getcostBySimproNew(number){
     // var text = abc.options[index].text; // 选中文本
     var job = options.val();
 
-    
+    if(job==="please"){
+        document.getElementById("bg").style.display = "none";
+    }else{
     // var value = abc.options[index].value; // 选中值
     // console.log(options.val());
     // $('#costcentre.form-control').append('<option value="' + 0 + '">' + "response[i].CostCenterID" + '</option>');
@@ -249,7 +252,7 @@ function getcostBySimproNew(number){
             alert('Error '+xhr.status+' | '+thrownError);
         },
     });
-    
+}
     
 }
 function isRepeat(arr) {
@@ -272,6 +275,13 @@ function clickfresh(number){
 
 
 }
+
+
+function onchangefresh(){
+   
+
+}
+
 function makeFrom() {
     var num =  JSON.parse(window.localStorage.NumberOfJobs);
     var bol =[];
@@ -301,6 +311,7 @@ function makeFrom() {
         var section = [];
         let Name =window.localStorage.name;
         var ID = window.localStorage.id;
+        cancelholdingstatus();
         
         try{
             $.ajax({
@@ -387,6 +398,24 @@ function makeFrom() {
 
 
     
+}
+
+function cancelholdingstatus(){
+    var id = window.localStorage.id;
+    var time  = "noholding";
+    $.ajax({
+        url: './api/setHoldingTime/'+id+'/'+time,
+        type: "get",
+        dataType: "json",
+        success: function (response) { 
+            console.log("setholding succeess");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error '+xhr.status+' | '+thrownError);
+            
+        },
+    });
+
 }
 
 function initPage() {
@@ -481,5 +510,6 @@ window.onload=function(){
     $('#Joblist_5')
     .dropdown()
     ;
+    onchangefresh();
     
 }

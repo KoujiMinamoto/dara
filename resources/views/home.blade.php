@@ -48,7 +48,8 @@
                 </div>
                 <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="ui search selection dropdown" id="Joblist_1" onChange="getcostBySimproNew(1)">  
+                    <select class="ui search selection dropdown" id="Joblist_1" onChange="getcostBySimproNew(1)">
+                        <option value="please">Please select a job</option>  
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
                     <div class="ui celled relaxed list">
@@ -66,6 +67,7 @@
                 <div class="Job" id="Job_2" style="display:none">
                     <p class="az-dashboard-text">Job Id</p>
                     <select class="ui search selection dropdown" id="Joblist_2" onChange="getcostBySimproNew(2)">  
+                        <option value="please">Please select a job</option>    
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
                     <div class="ui celled relaxed list">
@@ -82,7 +84,8 @@
                 </div>
                 <div class="Job" id="Job_3" style="display:none">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="ui search selection dropdown" id="Joblist_3" onChange="getcostBySimproNew(3)">  
+                    <select class="ui search selection dropdown" id="Joblist_3" onChange="getcostBySimproNew(3)"> 
+                         <option value="please">Please select a job</option> 
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
                     <div class="ui celled relaxed list">
@@ -99,7 +102,8 @@
                 </div>
                 <div class="Job" id="Job_4" style="display:none">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="ui search selection dropdown" id="Joblist_4" onChange="getcostBySimproNew(4)">  
+                    <select class="ui search selection dropdown" id="Joblist_4" onChange="getcostBySimproNew(4)">
+                        <option value="please">Please select a job</option>  
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
                     <div class="ui celled relaxed list">
@@ -116,7 +120,8 @@
                 </div>
                 <div class="Job" id="Job_5" style="display:none">
                     <p class="az-dashboard-text">Job Id</p>
-                    <select class="ui search selection dropdown" id="Joblist_5" onChange="getcostBySimproNew(5)">  
+                    <select class="ui search selection dropdown" id="Joblist_5" onChange="getcostBySimproNew(5)">
+                        <option value="please">Please select a job</option>  
                     </select>
                     <p class="az-dashboard-text">Costcentre</p>
                     <div class="ui celled relaxed list">
