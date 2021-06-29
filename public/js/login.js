@@ -1,5 +1,6 @@
 
 function getEmployeebySimpro(){
+    document.getElementById("bg").style.display = "block";
     // alert("CSS code: ");
     for(i = 1; i < 4; i++){
         $.ajax({
@@ -20,10 +21,12 @@ function getEmployeebySimpro(){
                 for(i = 0; i < response.length; i++){
                     $('#Name').append('<option value="' + response[i].ID+ '">' + response[i].Name + '</option>');
                 }
+                document.getElementById("bg").style.display = "none";
             
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert('Error '+xhr.status+' | '+thrownError);
+                document.getElementById("bg").style.display = "none";
             },
         });
     }

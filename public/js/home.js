@@ -96,6 +96,7 @@ function getjobs(){
 //     }
 // }
 function getjobsbySimpro(){
+    document.getElementById("bg").style.display = "block";
     // alert("CSS code: ");
     var job= document.getElementById('Job');
     for(i = 1; i < 4; i++){
@@ -123,10 +124,11 @@ function getjobsbySimpro(){
                     $('#Joblist_5').append('<option value="' + response[i].ID+ '">' + response[i].ID + '</option>');
                     $('#Job').append('<option value="' + response[i].ID+ '">' + response[i].ID + '</option>');
                 }
-            
+                document.getElementById("bg").style.display = "none";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert('Error '+xhr.status+' | '+thrownError);
+                document.getElementById("bg").style.display = "none";
             },
         });
     }
@@ -411,7 +413,7 @@ function cancelholdingstatus(){
             console.log("setholding succeess");
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert('Error '+xhr.status+' | '+thrownError);
+        
             
         },
     });
