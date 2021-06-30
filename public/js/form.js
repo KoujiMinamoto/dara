@@ -99,7 +99,7 @@ function stop(){
     var diffHrs = Math.floor((diffMs % 86400000) / 3600000); 
     var totalrest = diffHrs*60+diffMins;
     var holdingtime = totalrest+inhdtimebefore;
-    window.localStorage.totalrest= holdingtime;
+    window.localStorage.holdingtime= holdingtime;
     cancelholdingstatus();
     //update to database
     $.ajax({
@@ -183,7 +183,7 @@ function logout(){
 }
 
 function confirmText1(){
-    var totalrest = window.localStorage.totalrest;
+    var totalrest = window.localStorage.holdingtime;
     var totalholdingtime = parseInt(totalrest);
     var datetime = new Date();
     var id = window.localStorage.id;
@@ -200,7 +200,7 @@ function confirmText1(){
     
     
     start = new Date(Stringtime);
-    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime;
+    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime+1;
     var diffhours = datetime.getHours() - start.getHours();
     var totalmins = diffhours*60 + diffmins;
     var sspiltmins = diffmins/costs.length;
@@ -219,13 +219,14 @@ function confirmText1(){
         
         confirmText = confirmText+"JobID is "+jobs[i]+" and Cost center is "+costs[i]+" Take "+sspiltmins+" mins "+"\n";
     }
+    console.log("datetime"+datetime+"start"+start+"totalholding"+totalrest);
     window.localStorage.confirmText = confirmText;
 }
 
 
 function submit(){
     document.getElementById("bg").style.display = "block";
-    var totalrest = window.localStorage.totalrest;
+    var totalrest = window.localStorage.holdingtime;
     var totalholdingtime = parseInt(totalrest);
     var datetime = new Date();
     var id = window.localStorage.id;
@@ -242,7 +243,7 @@ function submit(){
     
     
     start = new Date(Stringtime);
-    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime;
+    var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime+1;
     var diffhours = datetime.getHours() - start.getHours();
     var totalmins = diffhours*60 + diffmins;
     var sspiltmins = diffmins/costs.length;
