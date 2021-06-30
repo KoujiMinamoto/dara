@@ -137,7 +137,11 @@ function getHoldingTime(){
             var time = response1[0].mins
             console.log(time);
             window.localStorage.holdingtime = time;
-            
+            if(time==="1"){
+                document.getElementById('totalrest').innerHTML="You have rest "+"0"+" mins ";
+            }else{
+            document.getElementById('totalrest').innerHTML="You have rest "+time+" mins ";
+            }
             
 
         },
@@ -150,7 +154,7 @@ function getHoldingTime(){
 
 }
 function cancel(){
-    
+    document.getElementById("bg").style.display = "block";
     var id = window.localStorage.id;
     var confirmText = "Are you sure you want to delete this object?";
     if(confirm(confirmText)) {
@@ -159,9 +163,6 @@ function cancel(){
             type: "get",
             dataType: "json",
             success: function (response1) {
-                
-
-                document.getElementById("bg").style.display = "none";
                 
                 localStorage.clear();
                 window.open("login",target="_self");
@@ -173,6 +174,8 @@ function cancel(){
             },
         });
 
+    }else{
+        document.getElementById("bg").style.display = "none";
     }
 }
 function logout(){

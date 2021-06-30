@@ -63,13 +63,6 @@ function Gonext(){
                             section.push(response1[i].sectionid);
 
                         }
-
-
-
-
-
-
-
                         //store the data
                         window.localStorage.startStringtime =  response1[0].starttime;
                         window.localStorage.date = response1[0].date;
@@ -77,17 +70,7 @@ function Gonext(){
                         window.localStorage.costs = JSON.stringify(costlist);
                         window.localStorage.section = JSON.stringify(section);
                         
-
-
-
-
-
-
-
-
-
-
-                        document.getElementById("bg").style.display = "none";
+                        
                         window.open("form",target="_self");
            
                     },
