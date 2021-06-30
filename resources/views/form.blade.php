@@ -24,6 +24,29 @@
             <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="left:40vw;position: absolute;"seamless></iframe> </div>
             <button class="btn submitbtn left-btn" onclick="logout()" style="margin-top: 25px;right:2vw;">Log out</button>
         </div>
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                
+                <table class="table" id="table_review">
+                    <thead>
+                        <tr>
+                        
+                        <th scope="col">Jobs</th>
+                        <th scope="col">CostCenter</th>
+                        <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+               
+                </table>
+                <button class="btn submitbtn left-btn" onclick="submit()">submit</button>
+            </div>
+
+        </div>
         <div class="shadow" id="bg">
             <!-- about -->
             <div class="about">
@@ -76,7 +99,7 @@
                 
             </div>
             <div class="submit">
-            <button class="btn submitbtn left-btn" onclick="submit()">submit</button>
+            <button id ="submitreview"class="btn submitbtn left-btn" onclick="">submit</button>
             <button class="btn submitbtn left-btn" onclick="cancel()">Cancel</button>
             <button class="btn submitbtn left-btn" onclick="hold()">hold</button>
             
@@ -128,6 +151,30 @@
         // var holdingtime = window.localStorage.holdingtime;
         // console.log("holding time is"+holdingtime);
         // document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
+        // Get the button that opens the modal
+        var btn = document.getElementById("submitreview");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var modal = document.getElementById("myModal");
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            confirmText1();
+        modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
         holdingstatus();
         
 

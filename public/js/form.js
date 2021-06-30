@@ -203,7 +203,7 @@ function confirmText1(){
     var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime+1;
     var diffhours = datetime.getHours() - start.getHours();
     var totalmins = diffhours*60 + diffmins;
-    var sspiltmins = diffmins/costs.length;
+    var sspiltmins = totalmins/costs.length;
     if(sspiltmins<=15){
         spiltmins = 15;
     }else {
@@ -219,8 +219,15 @@ function confirmText1(){
         
         confirmText = confirmText+"JobID is "+jobs[i]+" and Cost center is "+costs[i]+" Take "+sspiltmins+" mins "+"\n";
     }
-    console.log("datetime"+datetime+"start"+start+"totalholding"+totalrest);
+    console.log("datetime"+datetime+"start"+start+"totalholding"+totalrest+"split"+sspiltmins+"diffmins"+totalmins);
     window.localStorage.confirmText = confirmText;
+    // document.getElementById("review").innerHTML=confirmText;
+
+    var bodyString = '';
+        $.each(jobs, function(index, ctry) {
+            bodyString += ('<tr><td>'+ctry+'</td><td>'+costs[index]+'</td><td>'+sspiltmins+'</td></tr>');
+        });
+    $('#table_review tbody').html(bodyString);
 }
 
 
@@ -246,7 +253,7 @@ function submit(){
     var diffmins = datetime.getMinutes() - start.getMinutes()-totalholdingtime+1;
     var diffhours = datetime.getHours() - start.getHours();
     var totalmins = diffhours*60 + diffmins;
-    var sspiltmins = diffmins/costs.length;
+    var sspiltmins = totalmins/costs.length;
     if(sspiltmins<=15){
         spiltmins = 15;
     }else {
