@@ -290,7 +290,7 @@ function submit(){
             
         }else if(parseInt(start_time.toTimeString().slice(3, 5))<25&&parseInt(start_time.toTimeString().slice(3, 5))>=15){
             var min  = 15;
-        }else if(parseInt(start_time.toTimeString().slice(3, 5))<40&&parseInt(start_time.toTimeString().slice(3, 5))>=30){
+        }else if(parseInt(start_time.toTimeString().slice(3, 5))<40&&parseInt(start_time.toTimeString().slice(3, 5))>=25){
             var min  = 30;
         }else {
             var min  = 45;
@@ -300,7 +300,7 @@ function submit(){
             var emin  = "00";
         }else if(parseInt(end_time.toTimeString().slice(3, 5))<25&&parseInt(end_time.toTimeString().slice(3, 5))>=15){
             var emin  = 15;
-        }else if(parseInt(end_time.toTimeString().slice(3, 5))<40&&parseInt(end_time.toTimeString().slice(3, 5))>=30){
+        }else if(parseInt(end_time.toTimeString().slice(3, 5))<40&&parseInt(end_time.toTimeString().slice(3, 5))>=25){
             var emin  = 30;
         }else{
             var emin  = 45;
@@ -315,6 +315,7 @@ function submit(){
             url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+JobID+"/sections/"+SectionID+"/costCenters/"+CostcentreID+"/schedules/",
             type: "POST",
             dataType: "JSON",
+            async:false,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"

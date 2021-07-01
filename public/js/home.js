@@ -64,6 +64,68 @@ function getjobs(){
         },
     });
 }
+//to check if the scheule existed at this date
+var checkifexist = function(){
+    var result = true;
+    var jobslist = [];
+    var costlist = [];
+    var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2);
+    var ID = window.localStorage.id;
+    var num =  JSON.parse(window.localStorage.NumberOfJobs);
+    for(i=1;i<=num;i++){
+        let job = document.getElementById('Joblist_'+i);
+        let checkboxes = document.getElementById('costlist_'+i);
+        var checkboxs = checkboxes.getElementsByClassName("ui child checkbox left-text checked");
+        var check = checkboxs[0].getElementsByTagName("label");
+        for (var a=0, n=checkboxs.length;a<n;a++) 
+                {           
+                        
+                        var check = checkboxs[a].getElementsByTagName("label");
+                        var seccheck  =  checkboxs[a].getElementsByTagName("input");  
+                        //version 2
+                        
+                        $.ajax({
+                            url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+job.value+"/sections/"+seccheck[0].name+"/costCenters/"+check[0].innerText+"/schedules/?columns=Staff,Date",
+                            type: "GET",
+                            dataType: "JSON",
+                            async:false,
+                            headers: {
+                                "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"
+                            },
+                            success: function (response1) {
+                                var info = JSON.stringify(response1);
+                                var data = eval('(' + info + ')');
+                                for(c = 0; c < response1.length; c++){
+                                    // console.log(response1[c].Date+"   "+today+"   "+response1[c].Staff.ID+"  "+ID);
+                                    if(response1[c].Date===today){
+                                        if(response1[c].Staff.ID=parseInt(ID)){
+                                            result = false;
+                                            jobslist.push(job.value);
+                                            costlist.push(check[0].innerText);
+                                            // console.log(result);
+                                        }
+                                    }
+                                    
+                                }
+                               
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                
+                            },
+                        });
+                        
+            
+                }
+
+
+
+    }
+    window.localStorage.jobsex = JSON.stringify(jobslist);
+    window.localStorage.costsex = JSON.stringify(costlist);
+    // console.log("checkresult is "+result);
+    return result;
+
+}
 
 // function getEmployeebySimpro(){
 //     // alert("CSS code: ");
@@ -299,9 +361,10 @@ function makeFrom() {
         }
         flagArray[sourceArray[i]] = true;
     }
-    
-
+    // console.log("check is "+checkifexist());
+    // var checkifin = checkifexist();
     if (bolean==true){
+        if (checkifexist()==true){  
     
         var datetime = new Date();
         var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2);
@@ -332,7 +395,6 @@ function makeFrom() {
             for(i=1;i<=num;i++){
                 let job = document.getElementById('Joblist_'+i);
                 let checkboxes = document.getElementById('costlist_'+i);
-                var myElement = document.getElementById("costlist_1");
                 var checkboxs = checkboxes.getElementsByClassName("ui child checkbox left-text checked");
                 var check = checkboxs[0].getElementsByTagName("label");
                 console.log(checkboxs);
@@ -393,6 +455,15 @@ function makeFrom() {
         }catch(err) {
             alert(err);
         }
+    }else{
+        var jobsex = JSON.parse(window.localStorage.jobsex);
+        var costsex = JSON.parse(window.localStorage.costsex);
+        var bodyString  = ' ';
+        $.each(jobsex, function(index, ctry) {
+            bodyString += ('Existed '+(index+1)+'  JobID '+ctry+'  CostcenterID '+costsex[index]+'\n');
+        });
+        alert(bodyString);
+    }
     }
     else{
         alert("Job can not be Same");
