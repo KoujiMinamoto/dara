@@ -39,6 +39,23 @@
                 <div class="name">
                     <p class="az-dashboard-text left-text">Welcome Back</p>
                     <a class="left-text" id="Username"></a>
+                    <div style="width: 70vw;position: absolute;">
+                        <a class="left-text" id="havedone"></a>
+                        <table class="table" id="table_review" style="display:none;">
+                            <thead>
+                                <tr>
+                                
+                                <th scope="col">NO.</th>
+                                <th scope="col">CostCenter</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                    
+                        </table>
+                
+                    </div>
                     <!-- <select class="ui search selection dropdown" id="Name" style="display:none">  
                     </select> -->
                     
@@ -46,6 +63,7 @@
                         <a class="btn minus" onclick="delete_job()">-</a>
                                    
                 </div>
+                
                 <div class="Job" id="Job_1">
                     <p class="az-dashboard-text">Job Id</p>
                     <select class="ui search selection dropdown" id="Joblist_1" onChange="getcostBySimproNew(1)">

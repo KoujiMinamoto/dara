@@ -96,13 +96,13 @@ var checkifexist = function(){
                                 var info = JSON.stringify(response1);
                                 var data = eval('(' + info + ')');
                                 for(c = 0; c < response1.length; c++){
-                                    // console.log(response1[c].Date+"   "+today+"   "+response1[c].Staff.ID+"  "+ID);
-                                    if(response1[c].Date===today){
+                                    console.log(response1[c].Date+"   "+today+"   "+response1[c].Staff.ID+"  "+ID);
+                                    if(response1[c].Date===today&&response1[c].Staff.ID==parseInt(ID)){
                                         if(response1[c].Staff.ID=parseInt(ID)){
                                             result = false;
                                             jobslist.push(job.value);
                                             costlist.push(check[0].innerText);
-                                            // console.log(result);
+                                            console.log(result);
                                         }
                                     }
                                     
@@ -124,6 +124,50 @@ var checkifexist = function(){
     window.localStorage.costsex = JSON.stringify(costlist);
     // console.log("checkresult is "+result);
     return result;
+
+}
+function checklist(){
+    var ID = window.localStorage.id;
+    var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2);
+    var existlist=[];
+    var hrs = [];
+    $.ajax({
+        url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/employees/"+ID+"/timesheets/",
+        type: "GET",
+        dataType: "JSON",
+        async:false,
+        headers: {
+            "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"
+        },
+        success: function (response1) {
+            
+            for(c = 0; c < response1.length; c++){
+                if(response1[c].Date===today){
+                        existlist.push(response1[c].Reference);
+                        hrs.push(response1[c].TotalHrs);
+                        
+                    
+                }
+                
+            }
+           
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            
+        },
+    });
+    var bodyString  = 'Today You have done ';
+    $.each(existlist, function(index, ctry) {
+            bodyString += ((index+1)+'  '+ctry+' Take '+hrs[index]+'\n');
+        });
+    document.getElementById("havedone").innerHTML=bodyString;
+    // window.localStorage.exlistbydate=JSON.stringify(existlist);
+    // var bodyString1 = '';
+    //     $.each(existlist, function(index, ctry) {
+    //         bodyString1 += ('<tr><td>'+(index+1)+'</td><td>'+ctry+'</td></tr>');
+    //     });
+    // $('#table_review tbody').html(bodyString1);
+
 
 }
 
@@ -458,9 +502,9 @@ function makeFrom() {
     }else{
         var jobsex = JSON.parse(window.localStorage.jobsex);
         var costsex = JSON.parse(window.localStorage.costsex);
-        var bodyString  = ' ';
+        var bodyString  = 'Today You have done those jobs, You cant do it again. \n ';
         $.each(jobsex, function(index, ctry) {
-            bodyString += ('Existed '+(index+1)+'  JobID '+ctry+'  CostcenterID '+costsex[index]+'\n');
+            bodyString += (' '+(index+1)+'  JobID '+ctry+'  CostcenterID '+costsex[index]+'\n');
         });
         alert(bodyString);
     }
@@ -584,5 +628,6 @@ window.onload=function(){
     .dropdown()
     ;
     onchangefresh();
+    checklist();
     
 }

@@ -58,7 +58,7 @@ function setholdingstatus(){
         type: "get",
         dataType: "json",
         success: function (response) { 
-            console.log("setholding succeess");
+            // console.log("setholding succeess");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             
@@ -76,7 +76,7 @@ function cancelholdingstatus(){
         type: "get",
         dataType: "json",
         success: function (response) { 
-            console.log("cancelholding succeess");
+            // console.log("cancelholding succeess");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             
@@ -107,7 +107,7 @@ function stop(){
         type: "get",
         dataType: "json",
         success: function (response1) { 
-            console.log(holdingtime);
+            // console.log(holdingtime);
             document.getElementById("hd").style.display = "none";
             document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
             
@@ -133,9 +133,9 @@ function getHoldingTime(){
         dataType: "json",
         success: function (response1) {
             
-            console.log(response1[0]);
+            // console.log(response1[0]);
             var time = response1[0].mins
-            console.log(time);
+            // console.log(time);
             window.localStorage.holdingtime = time;
             if(time==="1"){
                 document.getElementById('totalrest').innerHTML="You have rest "+"0"+" mins ";
@@ -215,11 +215,11 @@ function confirmText1(){
         }
     }
     var confirmText = "Are you sure you want to Submit? \n ";
-    for(i = 0; i < costs.length; i++){
+    // for(i = 0; i < costs.length; i++){
         
-        confirmText = confirmText+"JobID is "+jobs[i]+" and Cost center is "+costs[i]+" Take "+sspiltmins+" mins "+"\n";
-    }
-    console.log("datetime"+datetime+"start"+start+"totalholding"+totalrest+"split"+sspiltmins+"diffmins"+totalmins);
+    //     confirmText = confirmText+"JobID is "+jobs[i]+" and Cost center is "+costs[i]+" Take "+sspiltmins+" mins "+"\n";
+    // }
+    // console.log("datetime"+datetime+"start"+start+"totalholding"+totalrest+"split"+sspiltmins+"diffmins"+totalmins);
     window.localStorage.confirmText = confirmText;
     // document.getElementById("review").innerHTML=confirmText;
 
@@ -285,12 +285,13 @@ function submit(){
         var realfinalend = realend_time.toTimeString().slice(0, 5);
         var finalstart = start_time.toTimeString().slice(0, 5);
         var finalend = end_time.toTimeString().slice(0, 5);
+        // console.log("1   start_time"+finalstart+"end_time"+finalend+"spiltmins"+spiltmins);
         if(parseInt(start_time.toTimeString().slice(3, 5))<15){
             var min  = "00";
             
-        }else if(parseInt(start_time.toTimeString().slice(3, 5))<25&&parseInt(start_time.toTimeString().slice(3, 5))>=15){
+        }else if(parseInt(start_time.toTimeString().slice(3, 5))<30&&parseInt(start_time.toTimeString().slice(3, 5))>=15){
             var min  = 15;
-        }else if(parseInt(start_time.toTimeString().slice(3, 5))<40&&parseInt(start_time.toTimeString().slice(3, 5))>=25){
+        }else if(parseInt(start_time.toTimeString().slice(3, 5))<45&&parseInt(start_time.toTimeString().slice(3, 5))>=30){
             var min  = 30;
         }else {
             var min  = 45;
@@ -298,9 +299,9 @@ function submit(){
 
         if(parseInt(end_time.toTimeString().slice(3, 5))<15){
             var emin  = "00";
-        }else if(parseInt(end_time.toTimeString().slice(3, 5))<25&&parseInt(end_time.toTimeString().slice(3, 5))>=15){
+        }else if(parseInt(end_time.toTimeString().slice(3, 5))<30&&parseInt(end_time.toTimeString().slice(3, 5))>=15){
             var emin  = 15;
-        }else if(parseInt(end_time.toTimeString().slice(3, 5))<40&&parseInt(end_time.toTimeString().slice(3, 5))>=25){
+        }else if(parseInt(end_time.toTimeString().slice(3, 5))<45&&parseInt(end_time.toTimeString().slice(3, 5))>=30){
             var emin  = 30;
         }else{
             var emin  = 45;
@@ -309,7 +310,7 @@ function submit(){
         finalend = end_time.toTimeString().slice(0, 3)+emin;
 
             
-        console.log(StaffID);
+        // console.log("2   start_time"+finalstart+"end_time"+finalend+"spiltmins"+spiltmins);
 
         $.ajax({
             url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+JobID+"/sections/"+SectionID+"/costCenters/"+CostcentreID+"/schedules/",
@@ -335,7 +336,7 @@ function submit(){
             }),
             success: function (response) {
                 
-                console.log(response);
+                // console.log(response);
 
 
                 $.ajax({
@@ -365,7 +366,34 @@ function submit(){
                 document.getElementById("bg").style.display = "none";
             },
         });
-        
+        $.ajax({
+            url: "https://uat-daraswitchboards.simprosuite.com/api/v1.0/companies/0/jobs/"+JobID+"/sections/"+SectionID+"/costCenters/"+CostcentreID+"/workOrders/",
+            type: "POST",
+            dataType: "JSON",
+            async:false,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer 36c519f7b6e3aa89722e954bb7057592992fc092"
+            },
+            data: JSON.stringify({
+                "Staff": StaffID,
+                "WorkOrderDate": today,
+                "DescriptionNotes": "string",
+                "MaterialNotes": "string",
+                "Approved": true
+            }),
+            success: function (response) {
+                
+                // console.log(response);
+
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('A schedule for this job on this date already exists. '+xhr.status+' | '+thrownError);
+                document.getElementById("bg").style.display = "none";
+            },
+        });
 
     }
     }else{

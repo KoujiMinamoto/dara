@@ -43,7 +43,10 @@
                     </tbody>
                
                 </table>
-                <button class="btn submitbtn left-btn" onclick="submit()">submit</button>
+                <div>
+                <button class="btn submitbtn right-btn" id = "cancelbtn"onclick="">Back</button>
+                <button class="btn submitbtn left-btn" onclick="submit()">Submit</button>
+                </div>
             </div>
 
         </div>
@@ -67,11 +70,11 @@
             
             </div>
             <!-- end about -->
-            <button class="btn submitbtn bd-btn" onclick="stop()">Stop</button>
+            <button class="btn submitbtn bd-btn" style="    left: 40vw;"onclick="stop()">Stop Holding</button>
 
             <div class="content">
-            <div class="loading">
-            <p>Resting</p>  <p class="bd-text" id= "Resttime"></p>
+            <div style="color:wheat;">
+            <p>You have rested</p>  <p  id= "Resttime"></p>
                 <span></span>
             </div>
             </div>
@@ -99,9 +102,9 @@
                 
             </div>
             <div class="submit">
-            <button id ="submitreview"class="btn submitbtn left-btn" onclick="">submit</button>
+            <button id ="submitreview"class="btn submitbtn left-btn" onclick="">Review&Submit</button>
             <button class="btn submitbtn right-btn" onclick="cancel()">Cancel</button>
-            <button class="btn submitbtn left-btn" onclick="hold()">hold</button>
+            <button class="btn submitbtn left-btn" onclick="hold()">Hold</button>
             
             </div>
         </div>
@@ -153,7 +156,7 @@
         // document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
         // Get the button that opens the modal
         var btn = document.getElementById("submitreview");
-
+        var cancelbtn = document.getElementById("cancelbtn");
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
         var modal = document.getElementById("myModal");
@@ -162,6 +165,9 @@
         btn.onclick = function() {
             confirmText1();
         modal.style.display = "block";
+        }
+        cancelbtn.onclick = function() {
+            modal.style.display = "none";
         }
 
         // When the user clicks on <span> (x), close the modal
