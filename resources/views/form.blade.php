@@ -100,7 +100,7 @@
             </div>
             <div class="submit">
             <button id ="submitreview"class="btn submitbtn left-btn" onclick="">submit</button>
-            <button class="btn submitbtn left-btn" onclick="cancel()">Cancel</button>
+            <button class="btn submitbtn right-btn" onclick="cancel()">Cancel</button>
             <button class="btn submitbtn left-btn" onclick="hold()">hold</button>
             
             </div>

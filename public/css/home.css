@@ -462,6 +462,11 @@ body {
 .left-btn{
     margin-left: 20px;
 }
+.right-btn{
+    position: relative;
+    float: left;
+    margin-left: 0px !important;
+}
 
 .bd-btn{
     position: absolute;
