@@ -29,7 +29,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                
+                <h2>Review Table</h2>
                 <table class="table" id="table_review">
                     <thead>
                         <tr>
@@ -70,10 +70,11 @@
             
             </div>
             <!-- end about -->
-            <button class="btn submitbtn bd-btn" style="    left: 40vw;"onclick="stop()">Stop Holding</button>
+            <button class="btn submitbtn bd-btn" style="    left: 0;margin: 0 auto;"onclick="stop()">Stop Holding</button>
 
             <div class="content">
-            <div style="color:wheat;">
+            
+            <div style="color:wheat;font-size: 27px;">
             <p>You have rested</p>  <p  id= "Resttime"></p>
                 <span></span>
             </div>

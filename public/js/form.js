@@ -156,7 +156,7 @@ function getHoldingTime(){
 function cancel(){
     document.getElementById("bg").style.display = "block";
     var id = window.localStorage.id;
-    var confirmText = "Are you sure you want to delete this object?";
+    var confirmText = "Are you sure you want to delete this record?";
     if(confirm(confirmText)) {
         $.ajax({
             url: './api/deleteAll/'+id,
@@ -268,6 +268,7 @@ function submit(){
     var confirmText = window.localStorage.confirmText;
     
     if(confirm(confirmText)) {
+        document.getElementById("bg").style.display = "block";
     for(i = 0; i < costs.length; i++){
         JobID= jobs[i];
         StaffID = parseInt(id);
