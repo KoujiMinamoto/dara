@@ -21,7 +21,7 @@
             <div class="companyLogo" id="companyLogo_id">
                 <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:15px;margin-top: 15px;">
             </div>
-            <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="left:40vw;position: absolute;"seamless></iframe> </div>
+            <div > <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Australia%2FMelbourne" width="175" height="90" frameborder="0" style="left:43vw;position: absolute;"seamless></iframe> </div>
             <button class="btn submitbtn left-btn" onclick="logout()" style="margin-top: 25px;right:2vw;">Log out</button>
         </div>
         <div id="myModal" class="modal">
@@ -83,9 +83,11 @@
         <div class = "home" id="home">
             
             <div class = "from" id="from">
-            
+            <div class="split" >
             <p class="az-dashboard-text" id= "name"></p>
-            <p class="az-dashboard-text" id= "Starttime"></p> <p class="az-dashboard-text" id= "Taketime"></p>
+            <p class="az-dashboard-text" id= "Starttime"></p></div><div class="split" style="top: 20px;"> <p class="az-dashboard-text" id= "Taketime" style="font-size:19px"></p></div>
+            </div>
+            <div class = "from" id="from">
             <p class="az-dashboard-text" id= "Starttime"></p> <p class="az-dashboard-text" id= "totalrest">You have rest 0 mins </p>
             <table class="table" id="table_orders">
                 <thead>
@@ -103,9 +105,9 @@
                 
             </div>
             <div class="submit">
-            <button id ="submitreview"class="btn submitbtn left-btn" onclick="">Review&Submit</button>
-            <button class="btn submitbtn right-btn" onclick="cancel()">Cancel</button>
-            <button class="btn submitbtn left-btn" onclick="hold()">Hold</button>
+            <button id ="submitreview"class="btn submitbtn1 left-btn green" onclick="">Review&Submit</button>
+            <button class="btn submitbtn1 right-btn red" onclick="cancel()">Cancel</button>
+            <button class="btn submitbtn1 left-btn brown" onclick="hold()">Hold</button>
             
             </div>
         </div>
@@ -129,7 +131,7 @@
             var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
             var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
             var diffs = Math.round((((diffMs % 86400000) % 3600000) %60000)/1000); 
-            document.getElementById('Taketime').innerHTML="It takes you "+diffHrs+' hrs '+diffMins+" mins "+diffs+" s";
+            document.getElementById('Taketime').innerHTML="Batch Running Time "+diffHrs+' hrs '+diffMins+" mins "+diffs+" s";
         }
     
         function startTimer()//开始
@@ -143,7 +145,7 @@
         var jobs = JSON.parse(window.localStorage.jobs);
         var costs = JSON.parse(window.localStorage.costs);
         document.getElementById('name').innerHTML = storedName;
-        document.getElementById('Starttime').innerHTML = "Start from : "+starttime.slice(16, 24);
+        document.getElementById('Starttime').innerHTML = "Job Start Time - "+starttime.slice(16, 24);
         
         var bodyString = '';
         $.each(jobs, function(index, ctry) {

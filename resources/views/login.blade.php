@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <div class="header" id="header_id">
+        <div class="header" id="header_id" style="display:none">
             <div class="companyLogo" id="companyLogo_id">
                 <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:15px;margin-top: 15px;">
             </div>
@@ -39,7 +39,14 @@
             </div>
             </div>
         </div>
+        <div>
+        <div>
+             <img src="{{URL::asset('/image/homepage.jpeg') }}"style="height: 100vh;width: 63vw;">
+        </div>
         <div class = "home" id="home">
+            <div style="    position: absolute;top: 15vh;left: 73vw;">
+                <img src="https://electricalswitchboards.com.au/wp-content/uploads/2019/02/dara-switchboards-logo-header.png"  height=50px style="margin-left:15px;margin-top: 15px;">
+            </div>
             <div class="login">
             <div class="name">
                     <p class="az-dashboard-text left-text">Your Name</p>
@@ -49,6 +56,7 @@
             <button onclick="Gonext()">Login</button>
             </div>
             
+        </div>
         </div>
     </body>
     

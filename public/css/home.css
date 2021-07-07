@@ -150,6 +150,12 @@ body {
     color:white !important;
     text-align: center;
 }
+.submitbtn1{
+  position: relative;right: -10px;float: right;
+  
+  color:white !important;
+  text-align: center;
+}
 .btn{
     
     border-radius: 3px;
@@ -465,7 +471,7 @@ body {
 .right-btn{
     position: relative;
     float: left;
-    margin-left: 0px !important;
+    margin-left: -18ƒpx !important;
 }
 
 .bd-btn{
@@ -483,7 +489,14 @@ body {
     left: -10vw;
 }
 
-
+.from{
+  min-height: 100px;
+}
+.split{
+  width: 48%;
+  float: left;
+  position: relative;
+}
 
 .modal {
     display: none; /* Hidden by default */
@@ -520,6 +533,16 @@ body {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .red{
+    background-color: red !important;
+  }
+  .green{
+    background-color: greenyellow !important;
+  }
+  .brown{
+    background-color: burlywood !important;
   }
 
 
