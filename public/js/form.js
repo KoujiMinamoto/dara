@@ -34,7 +34,7 @@ function holdingstatus(){
         success: function (response) { 
             var status = response[0].time;
             if(status.length<10){
-
+                
             }else{
                 getHoldingTime();
                 document.getElementById("hd").style.display = "block";
@@ -107,7 +107,6 @@ function stop(){
         type: "get",
         dataType: "json",
         success: function (response1) { 
-            // console.log(holdingtime);
             document.getElementById("hd").style.display = "none";
             document.getElementById('totalrest').innerHTML="You have rest "+holdingtime+" mins ";
             
